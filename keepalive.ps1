@@ -5,15 +5,32 @@
 
 $wsh = New-Object -ComObject WScript.shell
 $quit_time = '5:00:00pm'  # Modify quit_time for when you want the program to stop and logoff
+$RNDSleep = 5 
 
 while ($true) {
    $wsh.SendKeys('+{SCROLLLOCK}')
    $wsh.SendKeys('+{SCROLLLOCK}') # Keep the scroll-lock either off or on by entering it twice
-   $RNDSleep = Get-Random -minimum 1 -maximum 15
+   if ($RNDSleep % 5 -eq 0) {
+      Write-Output "FAST LOOP INITIATED!"
+      $counter = 1
+      $COUNTERRandom = Get-Random -minimum 8 -maximum 12
+      while ($counter -lt $COUNTERRandom) {
+         $RNDSleep = Get-Random -minimum 627 -maximum 4091
+         # Send the key twice to keep it either on or off
+         $wsh.SendKeys('+{SCROLLLOCK}')
+         $wsh.SendKeys('+{SCROLLLOCK}')
+         Start-Sleep -Milliseconds $RNDSleep
+         $counter += 1
+         Write-Output $RNDSleep
+      }
+   }
+   $RNDSleep = Get-Random -minimum 427 -maximum 13001
    Write-Output $RNDSleep
-   Start-Sleep -seconds $RNDSleep
+   Start-Sleep -milliseconds $RNDSleep
    if ((Get-Date) -gt (Get-Date -Date $quit_time)) {
-      shutdown /l  # CAUTION: this will log off your current session!
       break
    }
 }
+Write-Output "Logging off now"
+
+shutdown /l  # CAUTION: this will log off your current session!
