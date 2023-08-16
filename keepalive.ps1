@@ -3,6 +3,7 @@
 #    (Sometimes it is near impossible to transfer from one computer to another...for example, when working in a
 #    classified environment, and two or more networks are isolated from one another, and USBs are strictly prohibited)
 
+$GracefulExit = 0
 $wsh = New-Object -ComObject WScript.shell
 $quit_time = '5:00:00pm'  # Modify quit_time for when you want the program to stop and logoff
 $RNDSleep = 5 
