@@ -32,8 +32,7 @@ try {
          break
       }
    }
-}
-finally {
+} finally {
    $GracefulExit = 1
 }
 if ($GracefulExit -eq 1) {
